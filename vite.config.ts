@@ -36,7 +36,7 @@ export default defineConfig((configEnv) => ({
       entry: resolve('src', 'index.ts'),
       name: 'ValidSearch',
       formats: ['es', 'umd'],
-      fileName: (format) => `react-vite-library.${format}.js`,
+      fileName: (format) => `valid-ui.${format}.js`,
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],

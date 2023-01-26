@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { DrilldownSuggest, DrilldownSuggestProps } from '../DrilldownSuggest/drilldown-suggest';
 import { Country, CountryProps } from '../Country/country';
-import { CountryCode } from 'react-vite-library';
 import styled from '@emotion/styled';
 import { ValidKeyNotProvided } from '../ValidKeyNotProvided/valid-key-not-provided';
+import { CountryCode } from '../../types';
 
 export type SearchWithCountryProps = Omit<DrilldownSuggestProps, 'country'> & Omit<CountryProps, 'onSelect'> & {};
 
