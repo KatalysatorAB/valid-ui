@@ -1,0 +1,1 @@
+export { getFormattedAddressText } from './getFormattedAddressText';

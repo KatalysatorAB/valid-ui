@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all",
+        "tabWidth": 2,
+        "singleQuote": true,
+        "bracketSpacing": true,
+        "printWidth": 120,
+        "endOfLine": "auto",
+        "arrowParens": "avoid"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "warn"
+  },
+  "ignorePatterns": [
+    "dist",
+    "vite.config.ts"
+  ]
+}

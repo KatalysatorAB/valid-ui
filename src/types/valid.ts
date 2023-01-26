@@ -1,0 +1,40 @@
+export type ValidSuggestion = {
+  adm1_code: string;
+  adm1_name: string;
+  adm2_code: string;
+  adm2_name: string;
+  adm3_code: string;
+  adm3_name: string;
+  adm4_code: string;
+  adm4_name: string;
+  adm5_code: string;
+  adm5_name: string;
+  address_type: string;
+  latitude: string;
+  locality: string;
+  longitude: string;
+  number_from: string;
+  number_to: string;
+  letter_from: string;
+  letter_to: string;
+  postcode: string;
+  street: string;
+  street_number: string;
+  extra_number: string;
+  letter: string;
+  extra: string;
+  group_count: 1;
+  group_path: string;
+  status: string;
+  capturable: boolean;
+  region?: string;
+};
+
+export type ValidResponse = {
+  interpretation: any;
+  query: any;
+  responseTime: number;
+  status: number;
+  suggestions: ValidSuggestion[];
+  version: string;
+};

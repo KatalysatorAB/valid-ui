@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Country } from '../../components/Country/country';
+
+<Meta title="Valid/Country" component={Country} />
+
+# Country
+
+Country is a Select component that contains valid compatible countries.
+
+## Demo
+export const Template = args => <Country {...args} />;
+
+<Canvas>
+  <Story name="Base template" argTypes={{
+    countryPlaceholder: {
+      name: 'Placeholder',
+      type: 'string',
+      defaultValue: 'Search for address',
+    },
+    countryMode: {
+      name: 'Render country mode',
+      defaultValue: 'Search for address',
+      control: {
+        type: 'radio',
+        options: ['text', 'icons', 'icons-text', 'text-icons'],
+      },
+    },
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## When to use?
+When combined `<SelectWithCountry />` is not enough for you, or you want to have a better control over form items. Use together with `<Select />` component.
+
+## Props
+
+| Property name      | Description                                                                  | Type                                                           | Required |
+| :---               | :----                                                                        | :----                                                          | :---- |
+| countries          | Countries array that specifies available countries | `CountryCode[]`         | no |
+| countryMode        | Mode of which Select will be displayed                                       | `'text', 'icons', 'icons-text', 'text-icons'`                                                       | yes |
+| onSelect           | Called when selecting option                                                 | `(country: CountryCode) => void`                   | yes |
+| countryPlaceholder | Placeholder text that will be displayed in the component                     | `string`                                                       | no |
+
+## Styling
+TODO
+
+## Example
+
+```tsx
+import { Country, CountryCode } from '@geposit/valid-ui';
+
+<Country
+  countryMode="text"
+  countryPlaceholder="Select country"
+  onSelect={(country: CountryCode) => console.log(country)}
+/>
+```

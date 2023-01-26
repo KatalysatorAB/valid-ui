@@ -1,0 +1,94 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { SearchIntegration } from './search-integration';
+import { CountryCode } from '../../types';
+
+<Meta title="Valid/Search" component={SearchIntegration} />
+
+# Search
+
+Search component allows you to test
+
+## Demo
+
+export const Template = args => <SearchIntegration {...args} />;
+
+<Canvas>
+  <Story name="Integration example" argTypes={{
+    country: {
+      name: 'Country',
+      description: 'Select country where valid search will be performed',
+      options: Object.values(CountryCode),
+      mapping: CountryCode,
+      control: {
+        type: 'select',
+      },
+      defaultValue: CountryCode.Sweden,
+    },
+    validKey: {
+      name: 'Valid key',
+      type: 'string',
+      defaultValue: '',
+    },
+    placeholder: {
+      name: 'Placeholder',
+      type: 'string',
+      defaultValue: 'Search for address',
+    },
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Example
+```tsx
+import React, { useState } from 'react';
+import { CloseOutlined } from '@ant-design/icons';
+import { Button, Card } from 'antd';
+import styled from '@emotion/styled';
+
+import { ValidSuggestion, Search, getAddressText, CountryCode } from '@geposit/valid-ui';
+
+export type SearchIntegrationProps = {
+  country: CountryCode;
+  validKey: string;
+  placeholder?: string;
+};
+
+const SContainer = styled.div`
+  width: 500px;
+  padding: 10px;
+`;
+
+const SCard = styled(Card)`
+  margin-top: 20px;
+`;
+
+export const SearchIntegration = ({ country, validKey, placeholder }: SearchIntegrationProps) => {
+  const [selectedSuggestion, setSelectedSuggestion] = useState<ValidSuggestion>();
+
+  const handleSelect = (option: ValidSuggestion) => {
+    setSelectedSuggestion(option);
+  };
+
+  const handleClear = () => setSelectedSuggestion(undefined);
+  return (
+    <SContainer>
+      <p>Valid key: {validKey}</p>
+      <Search country={country} onSelect={handleSelect} validKey={validKey} placeholder={placeholder} />
+      {selectedSuggestion && (
+        <SCard
+          title={getAddressText(
+            selectedSuggestion.street,
+            selectedSuggestion.street_number,
+            selectedSuggestion.letter,
+            selectedSuggestion.postcode,
+            selectedSuggestion.locality,
+          )}
+          extra={<Button icon={<CloseOutlined />} onClick={handleClear} />}
+        />
+      )}
+    </SContainer>
+  );
+};
+
+```

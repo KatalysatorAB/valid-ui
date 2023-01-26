@@ -1,0 +1,65 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Search } from '../../components/Search/search';
+import { CountryCode } from '../../types';
+
+<Meta title="Valid/Search" component={Search} />
+
+# Search
+
+Search component allows you to search for correct address using autocomplete with drill-down functionality.
+This allows you to integrate our components into your React application.
+
+It uses [Valid](https://developer.geposit.se/docs/valid-20) API underneath, so `validKey` has to be provided to get the results.
+
+## Demo
+
+export const Template = args => <Search {...args} />;
+
+<Canvas>
+  <Story name="Base template" argTypes={{
+    country: {
+      name: 'Country',
+      description: 'Select country where valid search will be performed',
+      options: Object.values(CountryCode),
+      mapping: CountryCode,
+      control: {
+        type: 'select',
+      },
+      defaultValue: CountryCode.Sweden,
+    },
+    validKey: {
+      name: 'Valid key',
+      type: 'string',
+      defaultValue: '',
+    },
+    placeholder: {
+      name: 'Placeholder',
+      type: 'string',
+      defaultValue: 'Search for address',
+    },
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## When to use?
+Use it whenever you have control over the selected country, or you are supporting just one country.
+
+## Props
+
+| Property name      | Description                                                                  | Type                                                           | Required |
+| :---               | :----                                                                        | :----                                                          | :---- |
+| country            | Select from available countries. You will receive results from given country | `CountryCode` or `'se', 'no', 'fi', 'dk', 'de'`                | no |
+| validKey           | A valid API key                                                              | `string`                                                       | yes |
+| onSelect           | Called when selecting option                                                 | `(validSuggestion: ValidSuggestion) => void`                   | yes |
+| placeholder        | Placeholder text that will be displayed in the component                     | `string`                                                       | no |
+
+## Styling
+TODO
+
+## Example
+```jsx
+import { Search, CountryCode } from '@geposit/valid-ui';
+
+<Search country={CountryCode.Sweden} validKey={'YOUR_VALID_KEY'} placeholder={'test'} />
+```
