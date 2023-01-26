@@ -1,6 +1,6 @@
 {
   "name": "@geposit/valid-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/valid-ui.umd.js",
   "module": "dist/valid-ui.es.js",
   "types": "./dist/index.d.ts",
