@@ -16,6 +16,9 @@ const packageJson = require('./package.json');
 // https://vitejs.dev/config/
 export default defineConfig((configEnv) => ({
   plugins: [
+    dts({
+      include: ['src/'],
+    }),
     react({
       jsxImportSource: '@emotion/react',
       babel: {
@@ -26,9 +29,6 @@ export default defineConfig((configEnv) => ({
     linterPlugin({
       include: ['./src}/**/*.{ts,tsx}'],
       linters: [new EsLinter({ configEnv })],
-    }),
-    dts({
-      include: ['src/'],
     }),
   ],
   build: {
